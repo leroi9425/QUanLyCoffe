@@ -32,7 +32,7 @@
             this.titleTable = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.nhapHoaDon = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textGhiChu = new System.Windows.Forms.TextBox();
             this.showTenMon = new System.Windows.Forms.FlowLayoutPanel();
             this.firstLabel = new System.Windows.Forms.Label();
             this.firstTextSl = new System.Windows.Forms.TextBox();
@@ -48,6 +48,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.labelNV = new System.Windows.Forms.Label();
             this.btnNhapHD = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.showTenMon.SuspendLayout();
             this.showButton.SuspendLayout();
             this.showTien.SuspendLayout();
@@ -86,13 +87,13 @@
             this.nhapHoaDon.TabIndex = 5;
             this.nhapHoaDon.Text = "Nhập hóa đơn";
             // 
-            // textBox2
+            // textGhiChu
             // 
-            this.textBox2.Location = new System.Drawing.Point(631, 277);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(171, 60);
-            this.textBox2.TabIndex = 6;
+            this.textGhiChu.Location = new System.Drawing.Point(631, 277);
+            this.textGhiChu.Multiline = true;
+            this.textGhiChu.Name = "textGhiChu";
+            this.textGhiChu.Size = new System.Drawing.Size(171, 60);
+            this.textGhiChu.TabIndex = 6;
             // 
             // showTenMon
             // 
@@ -267,6 +268,17 @@
             this.btnNhapHD.UseVisualStyleBackColor = false;
             this.btnNhapHD.Click += new System.EventHandler(this.button2_Click_1);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(639, 245);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 18);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "ghi chú";
+            // 
             // FormTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -275,6 +287,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(855, 450);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnNhapHD);
             this.Controls.Add(this.labelNV);
             this.Controls.Add(this.label3);
@@ -284,7 +297,7 @@
             this.Controls.Add(this.labelMon);
             this.Controls.Add(this.showButton);
             this.Controls.Add(this.showTenMon);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textGhiChu);
             this.Controls.Add(this.nhapHoaDon);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.titleTable);
@@ -308,7 +321,7 @@
         private System.Windows.Forms.Label titleTable;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label nhapHoaDon;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textGhiChu;
         private System.Windows.Forms.FlowLayoutPanel showTenMon;
         private System.Windows.Forms.FlowLayoutPanel showButton;
         private System.Windows.Forms.Button button1;
@@ -324,5 +337,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelNV;
         private System.Windows.Forms.Button btnNhapHD;
+        private System.Windows.Forms.Label label2;
     }
 }

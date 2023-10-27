@@ -13,3 +13,4 @@ C:\Users\Public\QuanLyQuanCafe\QuanLyQuanCafe\obj\Debug\QuanLyQuanCafe.FormLogin
 C:\Users\Public\QuanLyQuanCafe\QuanLyQuanCafe\obj\Debug\QuanLyQuanCafe.FormManager.resources
 C:\Users\Public\QuanLyQuanCafe\QuanLyQuanCafe\obj\Debug\QuanLyQuanCafe.FormTable.resources
 C:\Users\Public\QuanLyQuanCafe\QuanLyQuanCafe\obj\Debug\QuanLyQuanCafe.FormHoaDon.resources
+C:\Users\Public\QuanLyQuanCafe\QuanLyQuanCafe\obj\Debug\QuanLyQuanCafe.FormTTDH.resources

@@ -109,5 +109,13 @@ namespace QuanLyQuanCafe
                 }
             }
         }
+
+        private void label1_MouseClick(object sender, MouseEventArgs e)
+        {
+            FormTTDH formTTDH = new FormTTDH();
+            this.Hide();
+            formTTDH.ShowDialog();
+            this.Show();
+        }
     }
 }

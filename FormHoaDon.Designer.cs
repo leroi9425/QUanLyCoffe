@@ -34,8 +34,11 @@
             this.textSoLuong = new System.Windows.Forms.TextBox();
             this.labelThanhTien = new System.Windows.Forms.Label();
             this.TongTien = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lbTienThua = new System.Windows.Forms.Label();
+            this.textKhachDua = new System.Windows.Forms.TextBox();
+            this.btnDong = new System.Windows.Forms.Label();
+            this.btnInHoaDon = new System.Windows.Forms.Label();
+            this.lbMaDon = new System.Windows.Forms.Label();
             this.showHoaDon.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,27 +101,61 @@
             this.TongTien.Text = "0";
             this.TongTien.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label3
+            // lbTienThua
             // 
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(407, 278);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 40);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "0";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbTienThua.BackColor = System.Drawing.Color.Transparent;
+            this.lbTienThua.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTienThua.Location = new System.Drawing.Point(407, 278);
+            this.lbTienThua.Name = "lbTienThua";
+            this.lbTienThua.Size = new System.Drawing.Size(106, 40);
+            this.lbTienThua.TabIndex = 13;
+            this.lbTienThua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // textBox1
+            // textKhachDua
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(406, 230);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.textBox1.Size = new System.Drawing.Size(107, 28);
-            this.textBox1.TabIndex = 14;
+            this.textKhachDua.BackColor = System.Drawing.SystemColors.Window;
+            this.textKhachDua.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textKhachDua.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textKhachDua.Location = new System.Drawing.Point(406, 230);
+            this.textKhachDua.Name = "textKhachDua";
+            this.textKhachDua.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.textKhachDua.Size = new System.Drawing.Size(107, 28);
+            this.textKhachDua.TabIndex = 14;
+            this.textKhachDua.Text = "0";
+            this.textKhachDua.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textKhachDua.Click += new System.EventHandler(this.textBox1_Click);
+            this.textKhachDua.TextChanged += new System.EventHandler(this.textKhachDua_TextChanged);
+            this.textKhachDua.MouseEnter += new System.EventHandler(this.textKhachDua_MouseEnter);
+            this.textKhachDua.MouseLeave += new System.EventHandler(this.textKhachDua_MouseLeave);
+            // 
+            // btnDong
+            // 
+            this.btnDong.BackColor = System.Drawing.Color.Transparent;
+            this.btnDong.Location = new System.Drawing.Point(412, 342);
+            this.btnDong.Name = "btnDong";
+            this.btnDong.Size = new System.Drawing.Size(114, 59);
+            this.btnDong.TabIndex = 15;
+            this.btnDong.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnDong_MouseClick);
+            // 
+            // btnInHoaDon
+            // 
+            this.btnInHoaDon.BackColor = System.Drawing.Color.Transparent;
+            this.btnInHoaDon.Location = new System.Drawing.Point(265, 342);
+            this.btnInHoaDon.Name = "btnInHoaDon";
+            this.btnInHoaDon.Size = new System.Drawing.Size(114, 59);
+            this.btnInHoaDon.TabIndex = 16;
+            // 
+            // lbMaDon
+            // 
+            this.lbMaDon.AutoSize = true;
+            this.lbMaDon.BackColor = System.Drawing.Color.Transparent;
+            this.lbMaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMaDon.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbMaDon.Location = new System.Drawing.Point(132, 237);
+            this.lbMaDon.Name = "lbMaDon";
+            this.lbMaDon.Size = new System.Drawing.Size(105, 20);
+            this.lbMaDon.TabIndex = 17;
+            this.lbMaDon.Text = "AM7172012";
             // 
             // FormHoaDon
             // 
@@ -127,13 +164,17 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(559, 410);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lbMaDon);
+            this.Controls.Add(this.btnInHoaDon);
+            this.Controls.Add(this.btnDong);
+            this.Controls.Add(this.textKhachDua);
+            this.Controls.Add(this.lbTienThua);
             this.Controls.Add(this.TongTien);
             this.Controls.Add(this.showHoaDon);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "FormHoaDon";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormHoaDon";
             this.Load += new System.EventHandler(this.FormHoaDon_Load);
             this.showHoaDon.ResumeLayout(false);
@@ -150,7 +191,10 @@
         private System.Windows.Forms.TextBox textSoLuong;
         private System.Windows.Forms.Label labelThanhTien;
         private System.Windows.Forms.Label TongTien;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lbTienThua;
+        private System.Windows.Forms.TextBox textKhachDua;
+        private System.Windows.Forms.Label btnDong;
+        private System.Windows.Forms.Label btnInHoaDon;
+        private System.Windows.Forms.Label lbMaDon;
     }
 }

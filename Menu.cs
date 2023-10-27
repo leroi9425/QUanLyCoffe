@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace QuanLyQuanCafe
 {
     public struct MyMenu
     {
+        public int id;
         public string tenMon;
         public string type;
         public string gia;
@@ -54,6 +56,7 @@ namespace QuanLyQuanCafe
                         type = "TOPPING";
                         break;
                 }
+                myMenu.id = (int)row["id"];
                 myMenu.type = type;
                 myMenu.tenMon = row["ten"].ToString();
                 myMenu.gia = row["gia"].ToString();

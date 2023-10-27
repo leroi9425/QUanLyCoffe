@@ -16,25 +16,8 @@ namespace QuanLyQuanCafe
         {
             InitializeComponent();
         }
-        private void btn_click(object sender ,EventArgs e)
-        {
-            
-            MessageBox.Show("sss");
-        }
         private void FormTable_Load(object sender, EventArgs e)
         {
-            // int dem = 0;fff
-            //for(int i=0; i<10; i++)
-            //{
-            //     Button btn = new Button();
-            //     btn.Name = "btn "+dem;
-            ///     btn.Text = "asdsad";
-            //     btn.Height = 20;
-            //     btn.Click += btn_click;
-            //     dem++;
-            //    listBox1.Items.Add(btn);
-            //     listBox1.Items.Add("12345");
-            //  }
             firstLabel.Hide();
             firstTextSl.Hide();
             lbGiaBan.Hide();
@@ -49,7 +32,21 @@ namespace QuanLyQuanCafe
             {
                 CMenu.addMenu();
             }
-            MessageBox.Show("loaded");
+
+            //   add thong tin vao sql HOADON
+            // lấy mã hóa đơn
+            ma_hoa_don = getMaHoaDon();
+            int sloveid = int.Parse(cofferManager.idTable.Replace("0", ""));
+            HoaDon.addHoaDon(ma_hoa_don, sloveid, tongTien, 0,"");
+        }
+        private string getMaHoaDon()
+        {
+            // ý tưởng: lấy buổi +  giờ + bàn = mã hóa đơn
+            // -10/22/2023 6:27:36 PM- 1 vi du ve date time
+            DateTime time = DateTime.Now;
+            string[] s = time.ToString().Split(' ');   // 0 la nay, 1 la gio, 2 la PM hoac AM
+            string[] hms = s[1].Split(':');     // hour minute sencond
+            return s[2] + hms[0] + hms[1] + hms[2] + cofferManager.idTable;
         }
         private void drawButton()
         {
@@ -101,8 +98,8 @@ namespace QuanLyQuanCafe
         }
         private void btn_Click(object sender, EventArgs e)
         {
-            
             Button btn = sender as Button;
+         //   MessageBox.Show(btn.Text + HoaDon.getIdFood(btn.Text).ToString());
             // tạo nhãn ghi tên món
             Label label = new Label()
             {
@@ -132,6 +129,7 @@ namespace QuanLyQuanCafe
                 Font = firstTextSl.Font
             };
             textBox.TextChanged += textBox_TextChanged;
+            textBox.Leave += texBox_Leave;
             // thay đổi thuộc tính của text bõ bên dưới:
             if(textBoxes.Count >= 1)
             {
@@ -145,11 +143,24 @@ namespace QuanLyQuanCafe
                     textBoxes[textBoxes.Count - 1].ReadOnly = true;
                 }
             }
+            // add vao sql CHITIETHOADON
+            idFood = HoaDon.getIdFood(btn.Text);
+            if(idFood >= 0)
+            {
+                HoaDon.addChiTietHD(ma_hoa_don, idFood);
+            }
+            
             labels.Add(label);
             labelTiens.Add(labelTien);
             textBoxes.Add(textBox);
             showTenMon.Controls.Clear();
             showInfo(showTenMon,showTien);
+            int id = HoaDon.getIdFood(oldTenMon);
+            HoaDon.updateChiTietHD(ma_hoa_don, id, oldSoLuong);
+        }
+        public static void updateChiTietHD(string mahoadon, int soluong)
+        {
+
         }
         public static void showInfo(FlowLayoutPanel showTenMon, FlowLayoutPanel showTien)
         {
@@ -170,7 +181,7 @@ namespace QuanLyQuanCafe
         {
             return String.Format("{0:#,##0.##}", gia);
         }
-        private void thanhTien()
+        private void thanhTien() // ham nay ko dung j ca
         {
             int tong = 0;
             for(int i=0; i< labelTiens.Count; i++)
@@ -179,10 +190,19 @@ namespace QuanLyQuanCafe
             }
             labelThanhTien.Text = xuLiGia(tong);
         }
+        private void texBox_Leave(object sender, EventArgs e)
+        {
+            TextBox textbox = sender as TextBox;
+            
+        }
         private void textBox_TextChanged(object sender, EventArgs e)
         {
             string gia = String.Empty;
             TextBox textBoxes = sender as TextBox;
+            if(textBoxes.Text == "")
+            {
+                return;
+            }
             for(int i=0; i<CMenu.menus.Count; i++)
             {
                  //kiểm tra phần tử cuối cùng
@@ -204,6 +224,12 @@ namespace QuanLyQuanCafe
             tongTien = tongTien + gia2;
             labelTiens[labelTiens.Count-1].Text = xuLiGia(gia2);
             labelThanhTien.Text = xuLiGia(tongTien);
+            try
+            {
+                oldSoLuong = int.Parse(textBoxes.Text);
+            }
+            catch (Exception) { }
+            oldTenMon = labels[labels.Count - 1].Text;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -247,22 +273,39 @@ namespace QuanLyQuanCafe
 
         private void button2_Click_1(object sender, EventArgs e)
         {
+            int index = HoaDon.listHoaDon.Count -1 ;
+            string cid = textBoxes[textBoxes.Count - 1].Text;
+            HoaDon.updateTongTienHD(ma_hoa_don, tongTien);
+            HoaDon.updateGhiChuHD(ma_hoa_don, textGhiChu.Text);
             textBoxes[textBoxes.Count - 1].ReadOnly = true;  // chuyển hóa nút cuối ko cho sửa
+            HoaDon.updateChiTietHD(ma_hoa_don, idFood, int.Parse(cid));
             FormHoaDon formHoaDon = new FormHoaDon();
             formHoaDon.getTenMon = labels;
             formHoaDon.getSoLuong = textBoxes;
             formHoaDon.getTien = labelTiens;
-            formHoaDon.tongTien = labelThanhTien.Text;
+            formHoaDon.tongTien = tongTien;
+            formHoaDon.idBill = ma_hoa_don;
+            formHoaDon.idTable = int.Parse(cofferManager.idTable.Replace("0", ""));
             this.Hide();
             formHoaDon.ShowDialog();
-            this.Show();
+            this.Close();
             showInfo(showTenMon, showTien);
+            tongTien = 0;
         }
 
+        private static int idFood;
+        private static int oldSoLuong;
+        private static string oldTenMon;
         public static List<Label> labels = new List<Label>();
         public static List<Label> labelTiens = new List<Label>();
         public static List<TextBox> textBoxes = new List<TextBox>();
         public static int tongTien = 0;
         public static string publicType;
+        private static string ma_hoa_don; // luu ma hoa don cua don hang dang thuc thi
+
+        private void textGhiChu_Leave(object sender, EventArgs e)
+        {
+            MessageBox.Show("leaver");
+        }
     }
 }
